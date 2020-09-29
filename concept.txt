@@ -1,0 +1,8 @@
+TITLE : KORONA Z
+
+theme: horror action survival platformer
+enemy: zombie
+view: top down
+art style: ?
+engine: unity
+Action : GunsS
