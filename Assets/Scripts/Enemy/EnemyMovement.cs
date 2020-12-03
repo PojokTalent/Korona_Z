@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float speed;
+    public Animator animator;
+    private SpriteRenderer sprite;
 
     // chase player
     public float range_stop;
@@ -21,6 +23,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        this.sprite = this.GetComponent<SpriteRenderer>();
         WaitTime = time;
     }
 
@@ -31,6 +34,9 @@ public class EnemyMovement : MonoBehaviour
         if (Vector2.Distance(transform.position, target.position) > range_stop && Vector2.Distance(transform.position, target.position) < range)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            this.sprite.flipX = target.transform.position.x < this.transform.position.x;
+            animator.SetBool("move", true);
+            
         }
         else
         {
@@ -39,9 +45,11 @@ public class EnemyMovement : MonoBehaviour
             {
                 patrol_to = _Patrol_to();
                 move = false;
+                
             }
 
-             transform.position = Vector2.MoveTowards(transform.position, patrol_to, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, patrol_to, speed * Time.deltaTime);
+            this.sprite.flipX = patrol_to.x < this.transform.position.x;
 
             // TODO: add a check so it won't move to same direction consecutively
 
@@ -52,15 +60,16 @@ public class EnemyMovement : MonoBehaviour
                 {
                     move = true;
                     WaitTime = time;
+                    animator.SetBool("move", true);
                 }
                 else
                 {
                     move = false;
                     WaitTime -= Time.deltaTime;
+                    animator.SetBool("move", false);
                 }
             }
         }
-
     }
 
 
