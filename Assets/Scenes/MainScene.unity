@@ -356,6 +356,8 @@ MonoBehaviour:
   speed: 1
   range_stop: 0
   range: 5
+  PatrolRange: 2
+  time: 2
 --- !u!212 &1581670688
 SpriteRenderer:
   m_ObjectHideFlags: 0
