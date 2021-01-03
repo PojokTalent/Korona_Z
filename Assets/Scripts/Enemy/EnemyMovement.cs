@@ -9,7 +9,6 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer sprite;
 
     // chase player
-    public float range_stop;
     public float range;
     private Transform target;
 
@@ -31,12 +30,11 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         //  Move towards player within range
-        if (Vector2.Distance(transform.position, target.position) > range_stop && Vector2.Distance(transform.position, target.position) < range)
+        if (Vector2.Distance(transform.position, target.position) < range)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             this.sprite.flipX = target.transform.position.x < this.transform.position.x;
             animator.SetBool("move", true);
-            
         }
         else
         {
