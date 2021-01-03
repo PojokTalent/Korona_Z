@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
 
     // patrol
-    public float PatrolRange;
+    public float PatrolRange;  // max range for patrol move
     public float time;
     private Vector2 patrol_to;
     private float WaitTime;
@@ -51,8 +51,6 @@ public class EnemyMovement : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, patrol_to, speed * Time.deltaTime);
             this.sprite.flipX = patrol_to.x < this.transform.position.x;
 
-            // TODO: add a check so it won't move to same direction consecutively
-
             // check if obj already on the randomize position
             if (Vector2.Distance(transform.position, patrol_to) <= 0.2f)
             {
@@ -79,10 +77,13 @@ public class EnemyMovement : MonoBehaviour
         float Objx = gameObject.transform.position.x;
         float Objy = gameObject.transform.position.y;
 
+
         float goX = Objx + Random.Range(Objx - PatrolRange, Objx + PatrolRange);
         float goY = Objy + Random.Range(Objy - PatrolRange, Objy + PatrolRange);
 
-        patrol_to = new Vector2(goX, goY);
+        float controlX = Random.Range(-1, 1);
+        float controlY = Random.Range(-1, 1);
+        patrol_to = new Vector2(goX * controlX, goY * controlY);
         return patrol_to;
     }
 }
