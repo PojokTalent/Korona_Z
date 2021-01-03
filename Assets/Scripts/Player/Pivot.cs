@@ -8,9 +8,18 @@ public class Pivot : MonoBehaviour
     public GameObject myPlayer;
     public Camera cam;
 
+    public Transform objectToFollow;
+    public Vector3 offset;
+    /*
+    void FixedUpdate()
+    {
+        transform.position = objectToFollow.position + offset;
+    }
+    */
+
     private void FixedUpdate()
     {
-
+        transform.position = objectToFollow.position + offset;
         Vector3 difference = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         difference.Normalize();
@@ -21,24 +30,13 @@ public class Pivot : MonoBehaviour
 
         if (rotationZ < -90 || rotationZ > 90)
         {
-
-
-
             if (myPlayer.transform.eulerAngles.y == 0)
             {
-
-
                 transform.localRotation = Quaternion.Euler(180, 0, -rotationZ);
-
-
             }
             else if (myPlayer.transform.eulerAngles.y == 180)
             {
-
-
                 transform.localRotation = Quaternion.Euler(180, 180, -rotationZ);
-
-
             }
 
         }
