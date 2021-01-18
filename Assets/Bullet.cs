@@ -12,7 +12,10 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         //Destroy(collision.collider.gameObject);
-
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyTakeDamage>().TakeDamage();
+        }
         Destroy(gameObject);
     }
 }
