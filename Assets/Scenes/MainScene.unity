@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 216003726}
   bulletPrefab: {fileID: 5095592679903022077, guid: e483e6cda4f6f46488c63d2e9739fe1b, type: 3}
+  stats: {fileID: 930037168}
   bulletForce: 10
 --- !u!1 &930037162
 GameObject:

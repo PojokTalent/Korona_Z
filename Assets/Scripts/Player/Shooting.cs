@@ -6,15 +6,19 @@ public class Shooting : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public PlayerStats stats;
+    private int ammo_stats;
 
     public float bulletForce = 10f;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        ammo_stats = stats.GetComponent<PlayerStats>().ammo;
+        if (Input.GetButtonDown("Fire1") && ammo_stats > 0)
         {
             Shoot();
+            stats.GetComponent<PlayerStats>().ammo--;
         }
     }
 
