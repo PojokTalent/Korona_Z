@@ -16,6 +16,10 @@ public class Bullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyTakeDamage>().TakeDamage();
         }
-        Destroy(gameObject);
+        if (collision.gameObject.tag != "Player")
+        {
+            // just adding a check for the bullet to not destroyed on collision with player
+            Destroy(gameObject);
+        }
     }
 }
