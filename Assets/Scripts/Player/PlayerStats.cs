@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
     // This script for Player stats (Ammo, HP, etc)
     public int ammo = 30;  // inital ammo
     public int Health = 100;  // initial health
+    //public GameObject myPlayer;
 
     public bool PickupItem(GameObject obj)
     {
@@ -24,4 +25,14 @@ public class PlayerStats : MonoBehaviour
                 return false;
         }
     }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Health -= 5;
+            Debug.Log("You hit something");
+        }
+    }
+    
 }
