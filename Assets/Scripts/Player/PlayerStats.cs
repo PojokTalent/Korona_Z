@@ -31,7 +31,7 @@ public class PlayerStats : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Health -= 5;
-            Debug.Log("You hit something");
+            //Debug.Log("Enemy touch you");
         }
     }
     
