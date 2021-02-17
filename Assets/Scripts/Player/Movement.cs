@@ -21,7 +21,6 @@ public class Movement : MonoBehaviour
 
     private void step()
     {
-        Debug.Log("tes");
         audiosource.PlayOneShot(clip);
     }
 

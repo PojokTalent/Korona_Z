@@ -19,11 +19,18 @@ public class EnemyMovement : MonoBehaviour
     private float WaitTime;
     private bool move = true;
 
+    // sound
+    private float starttime;
+    public AudioClip clip;
+    private AudioSource audiosource;
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         this.sprite = this.GetComponent<SpriteRenderer>();
+        audiosource = GetComponent<AudioSource>();
         WaitTime = time;
+        starttime = Time.time;
     }
 
     // Update is called once per frame
@@ -35,6 +42,7 @@ public class EnemyMovement : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             this.sprite.flipX = target.transform.position.x < this.transform.position.x;
             animator.SetBool("move", true);
+            play_audio();
         }
         else
         {
@@ -75,7 +83,6 @@ public class EnemyMovement : MonoBehaviour
         float Objx = gameObject.transform.position.x;
         float Objy = gameObject.transform.position.y;
 
-
         float goX = Objx + Random.Range(Objx - PatrolRange, Objx + PatrolRange);
         float goY = Objy + Random.Range(Objy - PatrolRange, Objy + PatrolRange);
 
@@ -83,5 +90,14 @@ public class EnemyMovement : MonoBehaviour
         float controlY = Random.Range(-1, 1);
         patrol_to = new Vector2(goX * controlX, goY * controlY);
         return patrol_to;
+    }
+    
+    private void play_audio()
+    {
+        if(Time.time - starttime >= 2)
+        {
+            audiosource.PlayOneShot(clip);
+            starttime = Time.time;
+        }
     }
 }
