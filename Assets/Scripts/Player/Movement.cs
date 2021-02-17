@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
+    public AudioClip clip;
+    private AudioSource audiosource;
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
     public Animator animator;
 
     Vector2 movement;
+
+    private void Awake()
+    {
+        audiosource = GetComponent<AudioSource>();
+        //clip = GetComponent<AudioSource>();
+    }
+
+    private void step()
+    {
+        Debug.Log("tes");
+        audiosource.PlayOneShot(clip);
+    }
 
     // Update is called once per frame
     void Update()
