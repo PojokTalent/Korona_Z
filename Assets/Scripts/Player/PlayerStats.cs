@@ -9,6 +9,13 @@ public class PlayerStats : MonoBehaviour
     public int Health = 100;  // initial health
     //public GameObject myPlayer;
 
+    private float starttime;
+
+    void Start ()
+    { 
+        starttime = Time.time;
+    }
+
     public bool PickupItem(GameObject obj)
     {
         switch (obj.tag)
@@ -26,12 +33,14 @@ public class PlayerStats : MonoBehaviour
         }
     }
     
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        
+        if (collision.gameObject.tag == "Enemy" && Time.time - starttime >= 2)
         {
             Health -= 5;
             //Debug.Log("Enemy touch you");
+            starttime = Time.time;
         }
     }
     
