@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
     // This script for Player stats (Ammo, HP, etc)
     public int ammo = 30;  // inital ammo
     public int Health = 100;  // initial health
+    public Text AmmoDisplay;
     //public GameObject myPlayer;
 
     private float starttime;
@@ -43,5 +45,10 @@ public class PlayerStats : MonoBehaviour
             starttime = Time.time;
         }
     }
-    
+
+    private void Update()
+    {
+        AmmoDisplay.text = ammo.ToString();
+    }
+
 }
