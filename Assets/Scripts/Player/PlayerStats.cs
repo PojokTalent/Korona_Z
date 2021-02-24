@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     public int ammo = 30;  // inital ammo
     public int Health = 100;  // initial health
     public Text AmmoDisplay;
+    public Slider slider;
     //public GameObject myPlayer;
 
     private float starttime;
@@ -38,17 +40,25 @@ public class PlayerStats : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         
-        if (collision.gameObject.tag == "Enemy" && Time.time - starttime >= 2)
+        if (collision.gameObject.tag == "Enemy" && Time.time - starttime >= 1)
         {
-            Health -= 5;
-            //Debug.Log("Enemy touch you");
-            starttime = Time.time;
+            if (Health > 0)
+            {
+                Health -= 5;
+                starttime = Time.time;
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+                // byee... Go back to main menu
+            }
         }
     }
 
     private void Update()
     {
         AmmoDisplay.text = ammo.ToString();
+        slider.value = Health;
     }
 
 }
