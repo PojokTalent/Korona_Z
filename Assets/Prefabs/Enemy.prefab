@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632993881b67f224bb0eaf978f545d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   animator: {fileID: 6798140879849273365}
-  range: 5
-  PatrolRange: 2
+  range: 10
+  PatrolRange: 5
   time: 2
   clip: {fileID: 8300000, guid: dd8d580181fc8ac4bb5a60bbe156e5a6, type: 3}
 --- !u!95 &6798140879849273365
